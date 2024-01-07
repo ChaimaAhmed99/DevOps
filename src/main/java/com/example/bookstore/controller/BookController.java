@@ -40,9 +40,7 @@ public class BookController {
     @GetMapping("/user/availble_books")
     public ModelAndView getAllBook(){
         List<Book> list=service.getAllBook();
-        //ModelAndView m= new ModelAndView();
-        // m.setViewName("bookList");
-        //m.addObject("book",list);
+
         return new ModelAndView("bookList","book",list);
     }
     @PostMapping("/admin/save")
@@ -88,16 +86,10 @@ public class BookController {
         if (book != null) {
             // Create a new instance of MyBookList
             MyBookList myList = new MyBookList(book.getId(), book.getName(), book.getAuthor(), book.getPrice());
-          /* MyBookList myList = MyBookList.builder()
-                   .name(book.getName())
-                   .price(book.getPrice())
-                   .author(book.getAuthor())
-                   .id(bookId)
-                   .build();
-*/
+
+
             System.out.println(myList);
-            // Save myList using your service class (service.saveMyBook(myList); or similar)
-            //myBookService.saveMyBook(myList);
+
             myBookRepository.save(myList);
 
             return "redirect:/user/availble_books";

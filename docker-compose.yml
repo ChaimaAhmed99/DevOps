@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  dotnet-app:
+    image: chaimaahmed:tag
+    ports:
+      - "1001:80"
+    volumes:
+      - ./Desktop/BookStore:/app
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: book
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: book
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+
