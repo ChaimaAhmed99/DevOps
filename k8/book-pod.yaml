@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-pod
+  labels:
+    app: book-pod
+spec:
+  selector:
+    matchLabels:
+      app: book-pod
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: book-pod
+    spec:
+      containers:
+        - image: chaimaahmed
+          name: <name>
+          ports:
+            - containerPort: 8080
+              name: demo-http
